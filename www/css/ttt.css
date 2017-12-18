@@ -1,0 +1,11 @@
+.gameTile{
+    width:200px;
+    height:200px;
+    box-shadow:inset 5px 5px 0px 0px #f00;
+}
+.gameTile.right{
+    border-right:5px solid #f00;
+}
+.gameTile.bottom{
+    border-bottom:5px solid #f00;
+}
