@@ -11,31 +11,39 @@
 </head>
 <body>
 <div class="container">
+    <div class="row center-block">
     <div id="gameBoard">
         <div class="row">
-            <div class="col-xs-3 gameTile vacant">
+            <div class="col-xs-3 gameTile clickable text-center vacant">
             </div>
-            <div class="col-xs-3 gameTile vacant">
+            <div class="col-xs-3 gameTile clickable text-center vacant">
             </div>
-            <div class="col-xs-3 gameTile vacant right">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3 gameTile vacant">
-            </div>
-            <div class="col-xs-3 gameTile vacant">
-            </div>
-            <div class="col-xs-3 gameTile vacant right">
+            <div class="col-xs-3 gameTile clickable text-center vacant right">
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-3 gameTile vacant bottom">
+            <div class="col-xs-3 gameTile clickable text-center vacant">
             </div>
-            <div class="col-xs-3 gameTile vacant bottom">
+            <div class="col-xs-3 gameTile clickable text-center vacant">
             </div>
-            <div class="col-xs-3 gameTile vacant right bottom">
+            <div class="col-xs-3 gameTile clickable text-center vacant right">
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-3 gameTile clickable text-center vacant bottom">
+            </div>
+            <div class="col-xs-3 gameTile clickable text-center vacant bottom">
+            </div>
+            <div class="col-xs-3 gameTile clickable text-center vacant right bottom">
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    <div id="gameConsole">
+        Game Log:<br>
+        <textarea id="gameConsoleLog"></textarea>
+    </div>
     </div>
 </div>
 <script>
