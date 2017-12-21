@@ -5,6 +5,10 @@ var gameArray = [
 ];
 gamePlaying = true;
 
+function scrollConsoleToBottom() {
+    $('#gameConsoleLog').scrollTop($('#gameConsoleLog')[0].scrollHeight);
+}
+
 $(document).on('click', ".gameTile.clickable", function() {
     if (gamePlaying==true){
         if ($(this).hasClass("occupied")){
@@ -12,9 +16,9 @@ $(document).on('click', ".gameTile.clickable", function() {
         } else {
             $(this).addClass("occupied cross");
             $(this).removeClass("vacant");
-            logToGameConsole("Player 1 takes spot: ["+$(this).parent().index()+","+$(this).index()+"].");
+            logToGameConsole("Player 1 takes spot: ("+$(this).parent().index()+","+$(this).index()+").");
             gameArray[$(this).parent().index()][$(this).index()]=1;
-            $(this).append('<i class="fa fa-times fa-5x" aria-hidden="true"></i>');
+            $(this).append('<i class="playerMarker fa fa-times fa-5x" aria-hidden="true"></i>');
             //window.setTimeout(computerTurn,2000);
         }
         checkWinner();
@@ -24,18 +28,32 @@ $(document).on('click', ".gameTile.clickable", function() {
 });
 
 function logToGameConsole(string){
-    $('#gameConsoleLog').append(string+"\n");
+    var d = new Date();
+    var twelveHour = "AM";
+    var singleDigitMinutePrefix = "";
+    var timestampHours = d.getHours();
+    if (d.getHours() > 12){
+        twelveHour = "PM";
+        timestampHours = d.getHours()-12;
+    }
+    if (d.getMinutes()<10){
+        singleDigitMinutePrefix = "0";
+    }
+    $('#gameConsoleLog').append("\n["+timestampHours+":"+singleDigitMinutePrefix+d.getMinutes()+" "+twelveHour+"] "+string);
+    scrollConsoleToBottom();
 }
 
 function computerTurn(){
     if (gamePlaying==true){
         $(".vacant").first().addClass("occupied circle");
-        logToGameConsole("Player 2 takes spot: ["+$(".vacant").first().parent().index()+","+$(".vacant").first().index()+"].");
+        logToGameConsole("Player 2 takes spot: ("+$(".vacant").first().parent().index()+","+$(".vacant").first().index()+").");
         gameArray[$(".vacant").first().parent().index()][$(".vacant").first().index()]=2;
-        $(".vacant").first().append('<i class="fa fa-circle-o fa-5x" aria-hidden="true"></i>');
+        $(".vacant").first().append('<i class="playerMarker fa fa-circle-o fa-5x" aria-hidden="true"></i>');
         $(".vacant").first().removeClass("vacant");
         checkWinner();
-        $(".gameTile").addClass("clickable");
+        if (gamePlaying==true){
+            $(".gameTile").addClass("clickable");
+        }
     }
 }
 
@@ -105,4 +123,19 @@ function checkWinner(){
             gamePlaying = false;
         }
     }
+}
+
+function newGame(){
+    gameArray = [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
+    ];
+    $(".three-in-a-row").removeClass("three-in-a-row");
+    $(".gameTile").addClass("vacant");
+    $(".gameTile").removeClass("occupied");
+    $(".gameTile").addClass("clickable");
+    $(".playerMarker").remove();
+    logToGameConsole("Starting new game.");
+    gamePlaying = true;
 }

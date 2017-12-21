@@ -23,19 +23,20 @@
 #gameConsole{
     margin-top:2em;
 }
-.three-in-a-row{
-    -webkit-animation: neon3 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon3 1.5s ease-in-out infinite alternate;
-    animation: neon3 1.5s ease-in-out infinite alternate;
+.vacant.clickable{
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
 }
-
-@-webkit-keyframes neon3 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00FF00, 0 0 70px #00FF00, 0 0 80px #00FF00, 0 0 100px #00FF00, 0 0 150px #00FF00;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00FF00, 0 0 35px #00FF00, 0 0 40px #00FF00, 0 0 50px #00FF00, 0 0 75px #00FF00;
-  }
+.vacant.clickable:hover:after{
+    font-family: FontAwesome;
+    content: "\f00d";
+    font-size:32px;
+    vertical-align:middle;
+    color:#ddd;
+}
+.three-in-a-row{
+    background-color:#00ff00;
 }
 .container{
     margin-top:1em;
